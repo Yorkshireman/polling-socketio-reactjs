@@ -7,6 +7,7 @@ class APP extends React.Component {
   constructor() {
     super();
     this.connect = this.connect.bind(this);
+    this.state = { status: 'disconnected' };
   }
 
   componentWillMount() {
@@ -15,13 +16,14 @@ class APP extends React.Component {
   }
 
   connect() {
-    alert('Connected: ' + this.socket.id);
+    this.setState({ status: 'connected' });
   }
 
   render() {
+    const { status } = this.state;
     return (
       <div>
-        <Header title="New Header" />
+        <Header status={status} title="New Header" />
       </div>
     );
   }
