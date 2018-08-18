@@ -6,15 +6,22 @@ import Header from './parts/Header';
 class APP extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      status: 'disconnected' ,
+      title: ''
+    };
+
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
-    this.state = { status: 'disconnected' };
+    this.welcome = this.welcome.bind(this);
   }
 
   componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
+    this.socket.on('welcome', this.welcome);
   }
 
   connect() {
@@ -25,11 +32,15 @@ class APP extends React.Component {
     this.setState({ status: 'disconnected' });
   }
 
+  welcome(serverState) {
+    this.setState({ title: serverState.title });
+  }
+
   render() {
-    const { status } = this.state;
+    const { status, title } = this.state;
     return (
       <div>
-        <Header status={status} title="New Header" />
+        <Header status={status} title={title} />
       </div>
     );
   }

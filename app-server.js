@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 
 var connections = [];
+var title = 'Untitled Presentation';
 
 app.use(express.static('./public'));
 app.use(express.static('./node_modules/bootstrap/dist'));
@@ -15,6 +16,10 @@ io.sockets.on('connection', function(socket) {
     connections.splice(connections.indexOf(socket), 1);
     socket.disconnect(); // in case client socket has not disconnected
     console.log("Disconnected: %s sockets remaining.", connections.length);
+  });
+
+  socket.emit('welcome', {
+    title: title
   });
 
   connections.push(socket);
