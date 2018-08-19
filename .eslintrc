@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "standard",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "semi": [
+      2,
+      "always"
+    ],
+    "space-before-function-paren": 0
+  },
+  "settings": {
+    "react": {
+      "version": "16.4.2"
+    }
+  }
+}
