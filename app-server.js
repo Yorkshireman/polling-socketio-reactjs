@@ -12,10 +12,10 @@ var server = app.listen(3000);
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket) {
-  socket.once('disconnect', function(){
+  socket.once('disconnect', function() {
     connections.splice(connections.indexOf(socket), 1);
     socket.disconnect(); // in case client socket has not disconnected
-    console.log("Disconnected: %s sockets remaining.", connections.length);
+    console.log('Disconnected: %s sockets remaining.', connections.length);
   });
 
   socket.emit('welcome', {
@@ -23,7 +23,7 @@ io.sockets.on('connection', function(socket) {
   });
 
   connections.push(socket);
-  console.log("Connected: %s sockets connected.", connections.length);
+  console.log('Connected: %s sockets connected.', connections.length);
 });
 
-console.log("Polling server is running at http://localhost:3000");
+console.log('Polling server is running at http://localhost:3000');

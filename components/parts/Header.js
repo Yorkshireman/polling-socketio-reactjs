@@ -20,10 +20,10 @@ class Header extends React.Component {
 Header.propTypes = {
   status: PropTypes.string,
   title: PropTypes.string.isRequired
-}
+};
 
 Header.defaultProps = {
   status: 'disconnected'
-}
+};
 
 export default Header;

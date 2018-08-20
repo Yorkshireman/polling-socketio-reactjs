@@ -8,16 +8,14 @@ class APP extends React.Component {
     super();
 
     this.state = {
-      status: 'disconnected' ,
+      status: 'disconnected',
       title: ''
     };
 
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
     this.welcome = this.welcome.bind(this);
-  }
 
-  componentWillMount() {
     this.socket = io('http://localhost:3000');
     this.socket.on('connect', this.connect);
     this.socket.on('disconnect', this.disconnect);
