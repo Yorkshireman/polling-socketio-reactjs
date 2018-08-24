@@ -1,7 +1,11 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import io from 'socket.io-client';
 
+import Audience from './Audience';
+import Board from './Board';
 import Header from './parts/Header';
+import Speaker from './speaker';
 
 class APP extends React.Component {
   constructor() {
@@ -39,6 +43,9 @@ class APP extends React.Component {
     return (
       <div>
         <Header status={status} title={title} />
+        <Route exact={true} path='/' component={Audience} />
+        <Route path='/board' component={Board} />
+        <Route path='/speaker' component={Speaker} />
       </div>
     );
   }
