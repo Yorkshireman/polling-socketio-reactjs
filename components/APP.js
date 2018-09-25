@@ -38,14 +38,26 @@ class APP extends React.Component {
     this.setState({ title: serverState.title });
   }
 
+  renderRoutes(state) {
+    return (
+      <main>
+        <Route exact={true} path='/' render={() => (
+          <Audience {...state} />
+        )} />
+        <Route path='/board' component={Board} />
+        <Route path='/speaker' render={() => (
+          <Speaker {...state} />
+        )} />
+      </main>
+    );
+  }
+
   render() {
     const { status, title } = this.state;
     return (
       <div>
         <Header status={status} title={title} />
-        <Route exact={true} path='/' component={Audience} />
-        <Route path='/board' component={Board} />
-        <Route path='/speaker' component={Speaker} />
+        {this.renderRoutes(this.state)}
       </div>
     );
   }

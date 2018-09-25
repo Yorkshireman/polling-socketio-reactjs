@@ -1,9 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class Audience extends React.Component {
   render() {
-    return (<h1>Audience</h1>);
+    const { title } = this.props;
+    return (<h1>Audience : {title}</h1>);
   }
 }
+
+Audience.propTypes = {
+  title: PropTypes.string
+};
 
 export default Audience;
