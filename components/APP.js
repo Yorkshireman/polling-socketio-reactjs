@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import io from 'socket.io-client';
 
 import Audience from './Audience';
 import Board from './Board';
 import Header from './parts/Header';
-import Speaker from './speaker';
+import Speaker from './Speaker';
+import Whoops404 from './Whoops404';
 
 class APP extends React.Component {
   constructor() {
@@ -41,13 +42,16 @@ class APP extends React.Component {
   renderRoutes(state) {
     return (
       <main>
-        <Route exact={true} path='/' render={() => (
-          <Audience {...state} />
-        )} />
-        <Route path='/board' component={Board} />
-        <Route path='/speaker' render={() => (
-          <Speaker {...state} />
-        )} />
+        <Switch>
+          <Route exact={true} path='/' render={() => (
+            <Audience {...state} />
+          )} />
+          <Route path='/board' component={Board} />
+          <Route path='/speaker' render={() => (
+            <Speaker {...state} />
+          )} />
+          <Route component={Whoops404} />
+        </Switch>
       </main>
     );
   }
